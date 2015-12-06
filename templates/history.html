@@ -6,26 +6,10 @@
 <div>
 <!-- 왼쪽 -->
  	<ul>
- 		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>		
+ 		{% for song in songs %}
+		  <li>{{ song.title }} - {{ song.artist }}</li>
+		{% endfor %}
  	</ul>
-
-	<div>
-	<!-- 오른쪽 -->
-	</div>
-</div>
-<div>
-<!-- 검색, 페이지 -->
 </div>
 
 {% endblock %}

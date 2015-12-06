@@ -1,4 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h1>{{ song.title }}</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ song.youtube }}" frameborder="0" allowfullscreen></iframe>
 {% endblock %}
