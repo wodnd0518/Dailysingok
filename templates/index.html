@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+	img {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+	}
+	body {
+		background-color: url("https://cosmos-ucop.ucdavis.edu/images/grey-gradient.png");
+	}
+</style>
 <div>
 <h1>최신 앨범</h1>
 </div>
 <div>
+	<p>[]</p>
 	<h2>제목</h2>
 	<div>
 		<img src="http://image.melon.co.kr/cm/album/images/026/53/515/2653515_org.jpg">
@@ -14,10 +25,9 @@
 	</div>
 </div>
 <div>
-	<p>Artist : </p>
-	<p>genre : </p>
-	<p>Update D. : </p>	
-	<p>description : </p>
+	<p>아티스트 : </p>
+	<p>발매일 : </p>
+	<p>장르 : </p>	
 </div>
 
 {% endblock %}
