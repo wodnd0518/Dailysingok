@@ -1,24 +1,17 @@
 {% extends "base.html" %}
+
 {% block content %}
-<style>
-	img {
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-	}
-</style>
-<div>
-	<h1>오늘의 신곡</h1>
-</div>
-<div>
-	<p>[OST]</p>
-	<h2>응답하라</h2>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/_uGpRk--2Xo" frameborder="0" allowfullscreen></iframe>
-</div>
-<div>
-	<p>아티스트 : </p>
-	<p>발매일 : </p>
-	<p>장르 : </p>
+<div class="main">
+  <div class="container">
+    <h1>오늘의 신곡</h1>
+    <p>{{ song.created_at.strftime('%Y-%m-%d') }}</p>
+    <p>오늘은 어떤 곡을 들어볼까요?</p>
+    <iframe class="player" width="560" height="315" src="https://www.youtube.com/embed/{{ song.youtube }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <h2>{{ song.title }}</h2>
+    <h3>[{{ song.genre }}] {{ song.artist }}</h3>
+    <h4>{{ song.comment }}</h4>
+  </div>
 </div>
 {% endblock %}
 

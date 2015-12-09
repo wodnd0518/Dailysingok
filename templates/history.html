@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% block content %}
-<div>
-<h1>최신 음악</h1>
-</div>
-<div>
-<!-- 왼쪽 -->
- 	<ul>
- 		{% for song in songs %}
-		  <li>{{ song.title }} - {{ song.artist }}</li>
-		{% endfor %}
- 	</ul>
-</div>
 
+{% block content %}
+<div class="container">
+  <h1 class="history">히스토리</h1>
+  <div class="row">
+    {% for song in songs %}
+      <div class="history-item col-lg-3">
+        <a href="/song/{{ song.id }}"><img src="{{ song.picture }}"></a>
+        <div>{{ song.created_at.strftime('%Y-%m-%d') }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

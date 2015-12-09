@@ -5,6 +5,7 @@ from flask_admin import AdminIndexView
 from flask_admin import expose
 from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 
 app = Flask(__name__)
@@ -47,13 +48,26 @@ admin.add_view(SongView(db.session, name='Song'))
 # View
 @app.route("/")
 def index():
-
-    return render_template("index.html")
+    today = datetime.date.today().strftime("%Y-%m-%d")
+    tomorrow = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    today_song = Song.query \
+        .filter(Song.created_at.between(today, tomorrow)) \
+        .first()
+    if today_song is None:
+        song = Song.query \
+            .filter(Song.created_at < tomorrow) \
+            .order_by(~Song.created_at) \
+            .first()
+    else:
+        song = today_song
+    return render_template("index.html", song=song)
 
 
 @app.route("/history")
 def history():
-    songs = Song.query.all()
+    songs = Song.query \
+        .order_by(Song.created_at) \
+        .all()
     return render_template("history.html", songs=songs)
 
 
