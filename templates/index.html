@@ -6,7 +6,7 @@
     <h1>오늘의 신곡</h1>
     <p>{{ song.created_at.strftime('%Y-%m-%d') }}</p>
     <p>오늘은 어떤 곡을 들어볼까요?</p>
-    <iframe class="player" width="560" height="315" src="https://www.youtube.com/embed/{{ song.youtube }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    <iframe class="player" src="https://www.youtube.com/embed/{{ song.youtube }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
     </div>
     <h2>{{ song.title }}</h2>
     <h3>[{{ song.genre }}] {{ song.artist }}</h3>
