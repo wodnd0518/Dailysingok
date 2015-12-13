@@ -14,6 +14,12 @@ body {
   background-size: cover;
 }
 
+.background {
+  height: 800px;
+  background: url(/static/detail.png) no-repeat center center;
+  background-size: cover;
+}
+
 h1 {
   color: white;
   margin-top: 60px;
@@ -46,13 +52,13 @@ img {
 }
 
 h2 {
-  color: white;
+  color: black;
   text-align: center;
   margin-top: 30px;
 }
 
 h3 {
-  color: white;
+  color: black;
   text-align: center;
 }
 
@@ -64,3 +70,4 @@ h4 {
 .history-item {
   text-align: center;
 }
+

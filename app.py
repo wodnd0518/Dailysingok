@@ -1,5 +1,7 @@
 from flask import Flask
+from flask import request
 from flask import render_template
+from flask import Response
 from flask_admin import Admin
 from flask_admin import AdminIndexView
 from flask_admin import expose
@@ -28,10 +30,24 @@ class Song(db.Model):
     genre = db.Column(db.String(255))
 
 
+def check_auth(username, password):
+    return username == 'wodnd0518' and password == '000518'
+
+
+def authenticate():
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+
 # Admin
 class AdminView(AdminIndexView):
     @expose('/')
     def index(self):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
         return super(AdminView, self).index()
 
 
@@ -55,9 +71,9 @@ def index():
         .first()
     if today_song is None:
         song = Song.query \
-            .filter(Song.created_at < tomorrow) \
-            .order_by(~Song.created_at) \
+            .order_by(Song.created_at.desc()) \
             .first()
+        print song.id
     else:
         song = today_song
     return render_template("index.html", song=song)
